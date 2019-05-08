@@ -54,7 +54,7 @@ class APITest extends SystemTestCase
 
     public function test_exportDataSubjects_whenNotMatchingVisitGiven()
     {
-        $noMatch = $this->api->exportDataSubjects([['idsite' => '9999', 'idvisit' => '9999']]);
+        $noMatch = $this->api->exportDataSubjects([['idsite' => '1', 'idvisit' => '9999']]);
         $this->assertJsonResponse('exportDataSubject_noMatch', $noMatch);
     }
 
