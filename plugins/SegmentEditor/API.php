@@ -162,8 +162,8 @@ class API extends \Piwik\Plugin\API
         $requiredAccess = Config::getInstance()->General['adding_segment_requires_access'];
 
         $authorized =
-            ($requiredAccess == 'view' && Piwik::isUserHasViewAccess($idSite)) ||
-            ($requiredAccess == 'admin' && Piwik::isUserHasAdminAccess($idSite)) ||
+            ($requiredAccess == 'view' && empty($idSite) ? Piwik::hasUserSuperUserAccess() : Piwik::isUserHasViewAccess($idSite)) ||
+            ($requiredAccess == 'admin' && empty($idSite) ? Piwik::hasUserSuperUserAccess() : Piwik::isUserHasAdminAccess($idSite)) ||
             ($requiredAccess == 'superuser' && Piwik::hasUserSuperUserAccess())
         ;
 
