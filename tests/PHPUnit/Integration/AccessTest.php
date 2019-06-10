@@ -320,7 +320,10 @@ class AccessTest extends IntegrationTestCase
         $access->checkUserHasViewAccess(array());
     }
 
-    public function testCheckUserHasViewAccessWithSuperUserAccess()
+    /**
+     * @expectedException \Piwik\NoAccessException
+     */
+    public function testCheckUserHasViewAccessWithSuperUserAccessEmptyAccessNoSiteIdsGiven()
     {
         $access = Access::getInstance();
         $access->setSuperUserAccess(true);
@@ -374,7 +377,10 @@ class AccessTest extends IntegrationTestCase
         $access->checkUserHasWriteAccess(array());
     }
 
-    public function testCheckUserHasWriteAccessWithSuperUserAccess()
+    /**
+     * @expectedException \Piwik\NoAccessException
+     */
+    public function testCheckUserHasWriteAccessWithSuperUserAccessEmptyAccessNoSiteIdsGiven()
     {
         $access = Access::getInstance();
         $access->setSuperUserAccess(true);
@@ -395,6 +401,9 @@ class AccessTest extends IntegrationTestCase
         $mock->checkUserHasWriteAccess(array(1, 5));
     }
 
+    /**
+     * @expectedException \Piwik\NoAccessException
+     */
     public function testCheckUserHasAdminAccessWithSuperUserAccess()
     {
         $access = $this->getAccess();
